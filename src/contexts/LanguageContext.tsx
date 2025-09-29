@@ -30,7 +30,6 @@ export const supportedLanguages: Language[] = [
   { code: 'mni', name: 'Manipuri', nativeName: 'ꯃꯤꯇꯩꯂꯣꯟ' },
   { code: 'ne', name: 'Nepali', nativeName: 'नेपाली' },
   { code: 'sa', name: 'Sanskrit', nativeName: 'संस्कृतम्' },
-  { code: 'kok', name: 'Konkani', nativeName: 'कोंकणी' },
   { code: 'raj', name: 'Rajasthani', nativeName: 'राजस्थानी' },
   { code: 'bhoj', name: 'Bhojpuri', nativeName: 'भोजपुरी' },
   { code: 'mag', name: 'Magahi', nativeName: 'मगही' },

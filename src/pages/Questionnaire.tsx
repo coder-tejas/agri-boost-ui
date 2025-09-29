@@ -8,8 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ArrowRight, MapPin, Wheat, Droplets } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const QuestionnairePage = () => {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     location: "",
@@ -53,29 +56,29 @@ const QuestionnairePage = () => {
             <CardHeader>
               <CardTitle className="flex items-center text-2xl">
                 <MapPin className="w-6 h-6 mr-3 text-primary" />
-                Location & Land Details
+                {t('questionnaire.step1.title')}
               </CardTitle>
               <CardDescription className="text-lg">
-                Tell us about your farm location and land characteristics
+                {t('questionnaire.step1.description')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="location" className="text-base font-medium">Farm Location (City/District)</Label>
+                  <Label htmlFor="location" className="text-base font-medium">{t('questionnaire.location.label')}</Label>
                   <Input
                     id="location"
-                    placeholder="e.g., Punjab, Maharashtra"
+                    placeholder={t('questionnaire.location.placeholder')}
                     value={formData.location}
                     onChange={(e) => updateFormData("location", e.target.value)}
                     className="h-12 text-base"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="state" className="text-base font-medium">State</Label>
+                  <Label htmlFor="state" className="text-base font-medium">{t('questionnaire.state.label')}</Label>
                   <Select value={formData.state} onValueChange={(value) => updateFormData("state", value)}>
                     <SelectTrigger className="h-12 text-base">
-                      <SelectValue placeholder="Select your state" />
+                      <SelectValue placeholder={t('questionnaire.state.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="punjab">Punjab</SelectItem>
@@ -91,21 +94,21 @@ const QuestionnairePage = () => {
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="landSize" className="text-base font-medium">Land Size (in acres)</Label>
+                  <Label htmlFor="landSize" className="text-base font-medium">{t('questionnaire.landSize.label')}</Label>
                   <Input
                     id="landSize"
                     type="number"
-                    placeholder="e.g., 5.5"
+                    placeholder={t('questionnaire.landSize.placeholder')}
                     value={formData.landSize}
                     onChange={(e) => updateFormData("landSize", e.target.value)}
                     className="h-12 text-base"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="soilType" className="text-base font-medium">Soil Type</Label>
+                  <Label htmlFor="soilType" className="text-base font-medium">{t('questionnaire.soilType.label')}</Label>
                   <Select value={formData.soilType} onValueChange={(value) => updateFormData("soilType", value)}>
                     <SelectTrigger className="h-12 text-base">
-                      <SelectValue placeholder="Select soil type" />
+                      <SelectValue placeholder={t('questionnaire.soilType.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="clay">Clay</SelectItem>
@@ -127,19 +130,19 @@ const QuestionnairePage = () => {
             <CardHeader>
               <CardTitle className="flex items-center text-2xl">
                 <Wheat className="w-6 h-6 mr-3 text-crop-green" />
-                Crop & Farming Details
+                {t('questionnaire.step2.title')}
               </CardTitle>
               <CardDescription className="text-lg">
-                Information about your crops and current farming practices
+                {t('questionnaire.step2.description')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="cropType" className="text-base font-medium">Primary Crop Type</Label>
+                  <Label htmlFor="cropType" className="text-base font-medium">{t('questionnaire.cropType.label')}</Label>
                   <Select value={formData.cropType} onValueChange={(value) => updateFormData("cropType", value)}>
                     <SelectTrigger className="h-12 text-base">
-                      <SelectValue placeholder="Select your main crop" />
+                      <SelectValue placeholder={t('questionnaire.cropType.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="wheat">Wheat</SelectItem>
@@ -155,10 +158,10 @@ const QuestionnairePage = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="previousYield" className="text-base font-medium">Previous Year Yield (per acre)</Label>
+                  <Label htmlFor="previousYield" className="text-base font-medium">{t('questionnaire.previousYield.label')}</Label>
                   <Input
                     id="previousYield"
-                    placeholder="e.g., 25 quintals"
+                    placeholder={t('questionnaire.previousYield.placeholder')}
                     value={formData.previousYield}
                     onChange={(e) => updateFormData("previousYield", e.target.value)}
                     className="h-12 text-base"
@@ -167,21 +170,21 @@ const QuestionnairePage = () => {
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="targetYield" className="text-base font-medium">Target Yield (per acre)</Label>
+                  <Label htmlFor="targetYield" className="text-base font-medium">{t('questionnaire.targetYield.label')}</Label>
                   <Input
                     id="targetYield"
-                    placeholder="e.g., 35 quintals"
+                    placeholder={t('questionnaire.targetYield.placeholder')}
                     value={formData.targetYield}
                     onChange={(e) => updateFormData("targetYield", e.target.value)}
                     className="h-12 text-base"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="budget" className="text-base font-medium">Budget for Improvements (₹)</Label>
+                  <Label htmlFor="budget" className="text-base font-medium">{t('questionnaire.budget.label')}</Label>
                   <Input
                     id="budget"
                     type="number"
-                    placeholder="e.g., 50000"
+                    placeholder={t('questionnaire.budget.placeholder')}
                     value={formData.budget}
                     onChange={(e) => updateFormData("budget", e.target.value)}
                     className="h-12 text-base"
@@ -198,19 +201,19 @@ const QuestionnairePage = () => {
             <CardHeader>
               <CardTitle className="flex items-center text-2xl">
                 <Droplets className="w-6 h-6 mr-3 text-blue-500" />
-                Irrigation & Fertilization
+                {t('questionnaire.step3.title')}
               </CardTitle>
               <CardDescription className="text-lg">
-                Details about your current irrigation and fertilization methods
+                {t('questionnaire.step3.description')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="irrigationMethod" className="text-base font-medium">Irrigation Method</Label>
+                  <Label htmlFor="irrigationMethod" className="text-base font-medium">{t('questionnaire.irrigation.label')}</Label>
                   <Select value={formData.irrigationMethod} onValueChange={(value) => updateFormData("irrigationMethod", value)}>
                     <SelectTrigger className="h-12 text-base">
-                      <SelectValue placeholder="Select irrigation method" />
+                      <SelectValue placeholder={t('questionnaire.irrigation.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="drip">Drip Irrigation</SelectItem>
@@ -223,10 +226,10 @@ const QuestionnairePage = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="fertilizerUse" className="text-base font-medium">Current Fertilizer Use</Label>
+                  <Label htmlFor="fertilizerUse" className="text-base font-medium">{t('questionnaire.fertilizer.label')}</Label>
                   <Select value={formData.fertilizerUse} onValueChange={(value) => updateFormData("fertilizerUse", value)}>
                     <SelectTrigger className="h-12 text-base">
-                      <SelectValue placeholder="Select fertilizer practice" />
+                      <SelectValue placeholder={t('questionnaire.fertilizer.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="organic">Organic Only</SelectItem>
@@ -239,10 +242,10 @@ const QuestionnairePage = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pestIssues" className="text-base font-medium">Common Pest/Disease Issues</Label>
+                <Label htmlFor="pestIssues" className="text-base font-medium">{t('questionnaire.pestIssues.label')}</Label>
                 <Textarea
                   id="pestIssues"
-                  placeholder="Describe any recurring pest problems, diseases, or crop challenges you face..."
+                  placeholder={t('questionnaire.pestIssues.placeholder')}
                   value={formData.pestIssues}
                   onChange={(e) => updateFormData("pestIssues", e.target.value)}
                   className="min-h-24 text-base"
@@ -256,19 +259,19 @@ const QuestionnairePage = () => {
         return (
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">Additional Information</CardTitle>
+              <CardTitle className="text-2xl">{t('questionnaire.step4.title')}</CardTitle>
               <CardDescription className="text-lg">
-                Any other details that might help us provide better recommendations
+                {t('questionnaire.step4.description')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="additionalInfo" className="text-base font-medium">
-                  Additional Notes (Optional)
+                  {t('questionnaire.additionalInfo.label')}
                 </Label>
                 <Textarea
                   id="additionalInfo"
-                  placeholder="Share any other information about your farming practices, challenges, or goals..."
+                  placeholder={t('questionnaire.additionalInfo.placeholder')}
                   value={formData.additionalInfo}
                   onChange={(e) => updateFormData("additionalInfo", e.target.value)}
                   className="min-h-32 text-base"
@@ -277,7 +280,7 @@ const QuestionnairePage = () => {
               
               <div className="bg-accent p-6 rounded-lg">
                 <h4 className="font-semibold text-lg text-accent-foreground mb-3">
-                  Review Your Information
+                  {t('questionnaire.review.title')}
                 </h4>
                 <div className="grid md:grid-cols-2 gap-4 text-sm">
                   <div>
@@ -307,19 +310,22 @@ const QuestionnairePage = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/upload">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Upload
-            </Link>
-          </Button>
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-crop-green rounded-lg flex items-center justify-center">
-              <Wheat className="w-5 h-5 text-white" />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/upload">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                {t('nav.backToUpload')}
+              </Link>
+            </Button>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-crop-green rounded-lg flex items-center justify-center">
+                <Wheat className="w-5 h-5 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold text-foreground">{t('questionnaire.title')}</h1>
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Farmer Questionnaire</h1>
           </div>
+          <LanguageSelector />
         </div>
       </header>
 
@@ -332,19 +338,19 @@ const QuestionnairePage = () => {
                 <div className="w-8 h-8 bg-crop-green rounded-full flex items-center justify-center text-white font-semibold">
                   ✓
                 </div>
-                <span className="text-crop-green font-semibold">Upload Complete</span>
+                <span className="text-crop-green font-semibold">{t('questionnaire.uploadComplete')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
                   2
                 </div>
-                <span className="font-semibold text-primary">Fill Questionnaire</span>
+                <span className="font-semibold text-primary">{t('questionnaire.fillQuestionnaire')}</span>
               </div>
               <div className="flex items-center space-x-2 opacity-50">
                 <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-muted-foreground font-semibold">
                   3
                 </div>
-                <span className="text-muted-foreground">Get Results</span>
+                <span className="text-muted-foreground">{t('questionnaire.getResults')}</span>
               </div>
             </div>
             <Progress value={66} className="h-2" />
@@ -354,10 +360,10 @@ const QuestionnairePage = () => {
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-foreground">
-                Step {currentStep} of {totalSteps}
+                {t('questionnaire.step')} {currentStep} {t('questionnaire.of')} {totalSteps}
               </span>
               <span className="text-sm text-muted-foreground">
-                {Math.round(progressValue)}% Complete
+                {Math.round(progressValue)}% {t('questionnaire.complete')}
               </span>
             </div>
             <Progress value={progressValue} className="h-2" />
@@ -378,13 +384,13 @@ const QuestionnairePage = () => {
               className="text-lg px-6 py-3"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Previous
+              {t('questionnaire.previousButton')}
             </Button>
 
             {currentStep === totalSteps ? (
               <Button size="lg" className="text-lg px-8 py-3" asChild>
                 <Link to="/results">
-                  Get My Recommendations
+                  {t('questionnaire.submitButton')}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
@@ -394,7 +400,7 @@ const QuestionnairePage = () => {
                 onClick={nextStep}
                 className="text-lg px-6 py-3"
               >
-                Next Step
+                {t('questionnaire.nextButton')}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             )}

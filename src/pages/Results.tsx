@@ -4,8 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Download, Share2, TrendingUp, Droplets, Sprout, Shield, AlertTriangle, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "@/hooks/useTranslation";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const ResultsPage = () => {
+  const { t } = useTranslation();
   // Simulated AI recommendations data
   const soilAnalysis = {
     ph: 6.2,
@@ -43,24 +46,25 @@ const ResultsPage = () => {
             <Button variant="ghost" size="sm" asChild>
               <Link to="/questionnaire">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Form
+                {t('nav.backToForm')}
               </Link>
             </Button>
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-crop-gold rounded-lg flex items-center justify-center">
                 <TrendingUp className="w-5 h-5 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Your AgriBoost Report</h1>
+              <h1 className="text-2xl font-bold text-foreground">{t('results.title')}</h1>
             </div>
           </div>
           <div className="flex space-x-3">
+            <LanguageSelector />
             <Button variant="outline" size="sm">
               <Share2 className="w-4 h-4 mr-2" />
-              Share
+              {t('results.share')}
             </Button>
             <Button size="sm">
               <Download className="w-4 h-4 mr-2" />
-              Download PDF
+              {t('results.download')}
             </Button>
           </div>
         </div>
@@ -75,19 +79,19 @@ const ResultsPage = () => {
                 <div className="w-8 h-8 bg-crop-green rounded-full flex items-center justify-center text-white font-semibold">
                   ✓
                 </div>
-                <span className="text-crop-green font-semibold">Upload Complete</span>
+                <span className="text-crop-green font-semibold">{t('questionnaire.uploadComplete')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-crop-green rounded-full flex items-center justify-center text-white font-semibold">
                   ✓
                 </div>
-                <span className="text-crop-green font-semibold">Questionnaire Complete</span>
+                <span className="text-crop-green font-semibold">{t('questionnaire.fillQuestionnaire')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
                   3
                 </div>
-                <span className="font-semibold text-primary">AI Analysis Complete</span>
+                <span className="font-semibold text-primary">{t('questionnaire.getResults')}</span>
               </div>
             </div>
             <Progress value={100} className="h-2" />
@@ -98,14 +102,14 @@ const ResultsPage = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-3xl text-primary">Analysis Complete!</CardTitle>
+                  <CardTitle className="text-3xl text-primary">{t('results.analysisComplete.title')}</CardTitle>
                   <CardDescription className="text-lg mt-2">
-                    Your personalized farming recommendations are ready
+                    {t('results.analysisComplete.subtitle')}
                   </CardDescription>
                 </div>
                 <div className="text-right">
                   <div className="text-2xl font-bold text-crop-green">85%</div>
-                  <div className="text-sm text-muted-foreground">Yield Improvement Potential</div>
+                  <div className="text-sm text-muted-foreground">{t('results.yieldPotential')}</div>
                 </div>
               </div>
             </CardHeader>
@@ -117,7 +121,7 @@ const ResultsPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Sprout className="w-6 h-6 mr-3 text-earth-dark" />
-                  Soil Health Analysis
+                  {t('results.soilHealth.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -166,7 +170,7 @@ const ResultsPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Sprout className="w-6 h-6 mr-3 text-crop-green" />
-                  Recommended Crops
+                  {t('results.recommendedCrops.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -192,7 +196,7 @@ const ResultsPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Shield className="w-6 h-6 mr-3 text-primary" />
-                  Fertilizer Recommendations
+                  {t('results.fertilizer.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -226,7 +230,7 @@ const ResultsPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   <Droplets className="w-6 h-6 mr-3 text-blue-500" />
-                  Irrigation Plan
+                  {t('results.irrigation.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -260,20 +264,19 @@ const ResultsPage = () => {
           <div className="mt-12 text-center">
             <div className="bg-accent p-8 rounded-xl">
               <h3 className="text-2xl font-bold text-accent-foreground mb-4">
-                Ready to Implement These Recommendations?
+                {t('results.cta.title')}
               </h3>
               <p className="text-accent-foreground/80 mb-6 max-w-2xl mx-auto">
-                Start with the high-priority fertilizer applications and consider upgrading to drip irrigation 
-                for maximum yield improvement.
+                {t('results.cta.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-lg px-8 py-6">
                   <Download className="w-5 h-5 mr-2" />
-                  Download Full Report
+                  {t('results.cta.downloadButton')}
                 </Button>
                 <Button variant="outline" size="lg" className="text-lg px-8 py-6" asChild>
                   <Link to="/">
-                    Analyze Another Field
+                    {t('results.cta.analyzeButton')}
                   </Link>
                 </Button>
               </div>
