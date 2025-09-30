@@ -3,11 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ArrowRight, Upload, FileText, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-farmland.jpg";
-import LanguageSelector from "@/components/LanguageSelector";
-import { useTranslation } from "@/hooks/useTranslation";
 
 const Index = () => {
-  const { t } = useTranslation();
   
   return (
     <div className="min-h-screen bg-background">
@@ -20,17 +17,14 @@ const Index = () => {
             </div>
             <h1 className="text-2xl font-bold text-foreground">AgriBoost</h1>
           </div>
-          <div className="flex items-center space-x-6">
-            <nav className="hidden md:flex space-x-6">
-              <Link to="/upload" className="text-muted-foreground hover:text-foreground transition-colors">
-                Upload Test
-              </Link>
-              <Link to="/questionnaire" className="text-muted-foreground hover:text-foreground transition-colors">
-                Questionnaire
-              </Link>
-            </nav>
-            <LanguageSelector />
-          </div>
+          <nav className="hidden md:flex space-x-6">
+            <Link to="/upload" className="text-muted-foreground hover:text-foreground transition-colors">
+              Upload Test
+            </Link>
+            <Link to="/questionnaire" className="text-muted-foreground hover:text-foreground transition-colors">
+              Questionnaire
+            </Link>
+          </nav>
         </div>
       </header>
 

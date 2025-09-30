@@ -4,11 +4,8 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Upload, FileText, X, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useCallback } from "react";
-import { useTranslation } from "@/hooks/useTranslation";
-import LanguageSelector from "@/components/LanguageSelector";
 
 const UploadPage = () => {
-  const { t } = useTranslation();
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -70,21 +67,18 @@ const UploadPage = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                {t('nav.backToHome')}
-              </Link>
-            </Button>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Upload className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <h1 className="text-2xl font-bold text-foreground">{t('upload.title')}</h1>
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Link>
+          </Button>
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <Upload className="w-5 h-5 text-primary-foreground" />
             </div>
+            <h1 className="text-2xl font-bold text-foreground">Upload Soil Test</h1>
           </div>
-          <LanguageSelector />
         </div>
       </header>
 
@@ -97,19 +91,19 @@ const UploadPage = () => {
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
                   1
                 </div>
-                <span className="font-semibold text-primary">{t('upload.step1')}</span>
+                <span className="font-semibold text-primary">Upload Documents</span>
               </div>
               <div className="flex items-center space-x-2 opacity-50">
                 <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-muted-foreground font-semibold">
                   2
                 </div>
-                <span className="text-muted-foreground">{t('upload.step2')}</span>
+                <span className="text-muted-foreground">Fill Questionnaire</span>
               </div>
               <div className="flex items-center space-x-2 opacity-50">
                 <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-muted-foreground font-semibold">
                   3
                 </div>
-                <span className="text-muted-foreground">{t('upload.step3')}</span>
+                <span className="text-muted-foreground">Get Results</span>
               </div>
             </div>
             <Progress value={33} className="h-2" />
@@ -118,9 +112,9 @@ const UploadPage = () => {
           {/* Upload Area */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="text-2xl">{t('upload.cardTitle')}</CardTitle>
+              <CardTitle className="text-2xl">Upload Your Soil Test Report</CardTitle>
               <CardDescription className="text-lg">
-                {t('upload.cardDescription')}
+                Upload your PDF soil test reports to get started with your personalized crop recommendations
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -136,10 +130,10 @@ const UploadPage = () => {
               >
                 <Upload className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">
-                  {t('upload.dropzone.title')}
+                  Drag and drop your files here
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  {t('upload.dropzone.subtitle')}
+                  or click below to browse your computer
                 </p>
                 <input
                   type="file"
@@ -151,18 +145,18 @@ const UploadPage = () => {
                 />
                 <Button size="lg" asChild>
                   <label htmlFor="file-input" className="cursor-pointer">
-                    {t('upload.dropzone.button')}
+                    Browse Files
                   </label>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
-                  {t('upload.dropzone.support')}
+                  Supports: PDF files only
                 </p>
               </div>
 
               {uploadProgress > 0 && uploadProgress < 100 && (
                 <div className="mt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-muted-foreground">{t('upload.uploading')}</span>
+                    <span className="text-sm text-muted-foreground">Uploading...</span>
                     <span className="text-sm text-muted-foreground">{uploadProgress}%</span>
                   </div>
                   <Progress value={uploadProgress} className="h-2" />
@@ -177,7 +171,7 @@ const UploadPage = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-crop-green mr-2" />
-                  {t('upload.uploadedFiles')} ({uploadedFiles.length})
+                  Uploaded Files ({uploadedFiles.length})
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -215,7 +209,7 @@ const UploadPage = () => {
             <div className="flex justify-center">
               <Button size="lg" className="text-lg px-8 py-6" asChild>
                 <Link to="/questionnaire">
-                  {t('upload.continueButton')}
+                  Continue to Questionnaire
                 </Link>
               </Button>
             </div>
