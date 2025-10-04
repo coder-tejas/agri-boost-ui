@@ -1,9 +1,25 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
-      "destination": "https://agri-boost.vercel.app/:path*",
+      "source": "/assets/:path*",
+      "destination": "https://agri-boost.vercel.app/assets/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://agri-boost.vercel.app/$1",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
     }
   ]
 }
