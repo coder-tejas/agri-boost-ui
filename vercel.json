@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "hhttps://agri-boost-q4me.vercel.app/",
+      "permanent": true
+    }
+  ]
+}
